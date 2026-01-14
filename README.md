@@ -1,3 +1,4 @@
+
 # CouncilWise Valuation Splitter
 
 A robust, cross-platform PowerShell tool designed to process "CouncilWise" property valuation exports. It allows users to interactively select properties to **exclude** from a main dataset, automatically generating two clean JSON files: one for included properties and one for excluded ones.
@@ -14,51 +15,47 @@ You can run this tool directly from your terminal without manually downloading f
 Paste the following line into the window and press **Enter**:
 
 ```powershell
-irm [https://raw.githubusercontent.com/CouncilWise/CW-JSON-Valuation-Splitter/main/VMOnline_JSON_Splitter.ps1](https://raw.githubusercontent.com/CouncilWise/CW-JSON-Valuation-Splitter/main/VMOnline_JSON_Splitter.ps1) | iex
-💾 Manual Installation
-If you prefer to download the script for repeated use:
+irm https://raw.githubusercontent.com/CouncilWise/CW-JSON-Valuation-Splitter/main/VMOnline_JSON_Splitter.ps1 | iex
+```
 
-Download the file VMOnline_JSON_Splitter.ps1 from this repository.
+---
 
-Open a terminal in the folder where you saved the file.
+## 💾 Manual Installation
 
-Run the script:
+If you prefer to download the script for repeated use or to verify the code signature:
 
-PowerShell
+1.  Download the file [VMOnline_JSON_Splitter.ps1](VMOnline_JSON_Splitter.ps1) from this repository.
+2.  Open a terminal in the folder where you saved the file.
+3.  Run the script:
 
+```powershell
 .\VMOnline_JSON_Splitter.ps1
-📋 Features
-Cross-Platform: Runs on Windows (PowerShell 5.1+) and macOS/Linux (PowerShell 7+).
+```
 
-Interactive UI:
+## 📋 Features
 
-Windows: Launches a native "Always-on-Top" GUI with checkboxes for easy selection.
+* **Cross-Platform:** Runs on Windows (PowerShell 5.1+) and macOS/Linux (PowerShell 7+).
+* **Interactive UI:**
+    * **Windows:** Launches a native "Always-on-Top" GUI with checkboxes for easy selection.
+    * **Mac/Linux:** Falls back to a clear, text-based terminal menu.
+* **Smart File Handling:** Supports drag-and-drop file paths and native OS file pickers.
+* **Data Integrity:** Validates JSON structure (checks for `Valuation_ID`) before processing.
 
-Mac/Linux: Falls back to a clear, text-based terminal menu.
+## 🛠️ Usage Details
 
-Smart File Handling: Supports drag-and-drop file paths and native OS file pickers.
-
-Data Integrity: Validates JSON structure (checks for Valuation_ID) before processing.
-
-🛠️ Usage Details
-Selecting Exclusions
+### Selecting Exclusions
 Once the script is running:
+* **On Windows:** A window will pop up. Check the boxes next to the properties you wish to **remove** from the main list. Click "Exclude Selected".
+* **On Mac/Linux:** A list will appear in the terminal. Type the index numbers of the properties you wish to remove (e.g., `1, 3, 5`) and press Enter.
 
-On Windows: A window will pop up. Check the boxes next to the properties you wish to remove from the main list. Click "Exclude Selected".
-
-On Mac/Linux: A list will appear in the terminal. Type the index numbers of the properties you wish to remove (e.g., 1, 3, 5) and press Enter.
-
-Output Files
+### Output Files
 The script will generate two new files in the same directory as your source file:
+1.  `[Filename]_PropertiesIncluded.json` - The clean list (everything you didn't check).
+2.  `[Filename]_PropertiesExcluded.json` - The list of items you removed.
 
-[Filename]_PropertiesIncluded.json - The clean list (everything you didn't check).
-
-[Filename]_PropertiesExcluded.json - The list of items you removed.
-
-📝 Input File Requirements
+## 📝 Input File Requirements
 The input file must be a valid JSON array containing objects with at least the following property:
+* `Valuation_ID`
 
-Valuation_ID
-
-📄 License
-MIT License
+## 📄 License
+[MIT License](LICENSE)
